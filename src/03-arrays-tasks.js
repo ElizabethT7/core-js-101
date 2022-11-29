@@ -325,8 +325,9 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const array = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => array.indexOf(a) - array.indexOf(b));
 }
 
 /**
@@ -341,8 +342,8 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  return arr.reduce((acc, currentValue) => (acc + currentValue), 0);
 }
 
 /**
@@ -423,7 +424,8 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(arr) {
-  return arr.sort((a, b) => b.city - a.city).sort((x, y) => y.country - x.country);
+  return arr.sort((a, b) => a.city.localeCompare(b.city))
+    .sort((x, y) => x.country.localeCompare(y.country));
 }
 
 /**
@@ -445,7 +447,10 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+/* const arr = new Array(n).fill(0);
+  const matrix = arr.map(() => new Array(n).fill(0));
+  matrix.map((item, index) => item[index] = 1);
+  return matrix; */
 }
 
 /**
@@ -476,8 +481,8 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return [...new Set(arr)];
 }
 
 /**
@@ -568,8 +573,19 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const half = Math.floor(arr.length / 2);
+  const head = arr.slice(0, half);
+  const tail = arr.slice(-half);
+  let newArray = [];
+  if (arr.length === 1) {
+    newArray = arr;
+  } else if (arr.length % 2 === 0) {
+    newArray = tail.concat(head);
+  } else {
+    newArray = tail.concat(arr[half], head);
+  }
+  return newArray;
 }
 
 
