@@ -238,7 +238,12 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  return arr.map((item, index) => item + index);
+  const array = [arr[0]];
+  arr.reduce((acc, val) => {
+    array.push(acc + val);
+    return acc + val;
+  });
+  return array;
 }
 
 /**
@@ -272,7 +277,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  return arr.map((item, index) => item.repeat(index + 1));
+  return arr.reduce((acc, current, index) => acc.concat((new Array(index + 1)).fill(current)), []);
 }
 
 
